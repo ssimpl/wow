@@ -1,0 +1,25 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./cmd/server/Dockerfile
+    environment:
+      - LISTEN_ADDR=:8080
+      - POW_DIFFICULTY=5
+    networks:
+      - internal_network
+  client:
+    build:
+      context: .
+      dockerfile: ./cmd/client/Dockerfile
+    depends_on:
+      - server
+    environment:
+      - SERVER_ADDR=server:8080
+      - REQUESTS=1
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
