@@ -23,3 +23,7 @@ make test
 ```bash
 make lint
 ```
+
+### Demo
+
+![Demo](demo.gif)
